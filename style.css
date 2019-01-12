@@ -1,0 +1,402 @@
+* {
+    font-family: "proxima-nova", "Source Sans Pro", sans-serif;
+}
+
+#btn-open-chat {
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+}
+
+.chat-container {
+    position: fixed;
+    bottom: -500px;
+    left: 5px;
+    width: 350px;
+    background-color: #eee;
+    box-shadow: 0 1px 15px 1px rgba(0, 0, 0, .28);
+    transition-duration: 300ms;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.chat-container.active {
+    visibility: visible;
+    opacity: 1;
+    bottom: 5px;
+}
+
+.chat-container #input-message {
+    resize: none;
+}
+
+.chat-container .chat-header {
+    /*width: 100%;*/
+    background-color: #ccc;
+}
+
+.chat-container .conversation {
+    position: relative;
+    height: 350px;
+}
+
+.chat-container .conversation div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 350px;
+    width: 100%;
+    overflow: auto;
+    overflow-wrap: break-word;
+}
+
+.chat-container .conversation div {
+    background-color: #eee;
+    visibility: hidden;
+}
+
+.chat-container .conversation div.active {
+    visibility: visible;
+}
+
+.chat-footer {
+    position: relative;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+}
+
+/* ================ EMOJI ================ */
+.intercom-composer-popover-input {
+    font-size-adjust: none;
+    font-size: 100%;
+    font-style: normal;
+    letter-spacing: normal;
+    font-stretch: normal;
+    font-variant: normal;
+    font-weight: 400;
+    text-align: left;
+    text-align-last: auto;
+    text-decoration: none;
+    -webkit-text-emphasis: none;
+    text-emphasis: none;
+    text-indent: 0;
+    text-justify: auto;
+    text-shadow: none;
+    text-transform: none;
+    -webkit-animation: none 0 ease 0 1 normal;
+    animation: none 0 ease 0 1 normal;
+    -webkit-animation-play-state: running;
+    animation-play-state: running;
+    -webkit-appearance: normal;
+    -moz-appearance: normal;
+    appearance: normal;
+    azimuth: center;
+    -webkit-backface-visibility: visible;
+    backface-visibility: visible;
+    background: none 0 0 auto repeat scroll padding-box transparent;
+    background-color: transparent;
+    background-image: none;
+    bleed: 6pt;
+    border: 0 none transparent;
+    border-radius: 0;
+    bottom: auto;
+    box-align: stretch;
+    -webkit-box-decoration-break: slice;
+    box-decoration-break: slice;
+    box-direction: normal;
+    box-flex: 0.0;
+    box-flex-group: 1;
+    box-lines: single;
+    box-ordinal-group: 1;
+    box-orient: inline-axis;
+    box-pack: start;
+    box-shadow: none;
+    box-sizing: content-box;
+    -webkit-column-break-after: auto;
+    break-after: auto;
+    -webkit-column-break-before: auto;
+    break-before: auto;
+    -webkit-column-break-inside: auto;
+    break-inside: auto;
+    caption-side: top;
+    clear: none;
+    clip: auto;
+    color: inherit;
+    -webkit-column-count: auto;
+    -moz-column-count: auto;
+    column-count: auto;
+    -webkit-column-fill: balance;
+    -moz-column-fill: balance;
+    column-fill: balance;
+    -webkit-column-gap: normal;
+    -moz-column-gap: normal;
+    column-gap: normal;
+    -webkit-column-rule: medium medium #1f1f1f;
+    -moz-column-rule: medium medium #1f1f1f;
+    column-rule: medium medium #1f1f1f;
+    -webkit-column-span: 1;
+    -moz-column-span: 1;
+    column-span: 1;
+    -webkit-column-width: auto;
+    -moz-column-width: auto;
+    column-width: auto;
+    -webkit-columns: auto auto;
+    -moz-columns: auto auto;
+    columns: auto auto;
+    content: normal;
+    counter-increment: none;
+    counter-reset: none;
+    cursor: auto;
+    direction: ltr;
+    display: inline;
+    empty-cells: show;
+    float: none;
+    hanging-punctuation: none;
+    -webkit-hyphens: manual;
+    -ms-hyphens: manual;
+    hyphens: manual;
+    image-orientation: auto;
+    image-rendering: auto;
+    image-resolution: normal;
+    left: auto;
+    line-height: inherit;
+    list-style: disc outside none;
+    margin: 0;
+    marks: none;
+    max-height: none;
+    max-width: none;
+    min-height: 0;
+    min-width: 0;
+    nav-down: auto;
+    nav-index: auto;
+    nav-left: auto;
+    nav-right: auto;
+    nav-up: auto;
+    opacity: 1;
+    orphans: 2;
+    outline: medium none invert;
+    outline-offset: 0;
+    overflow: visible;
+    padding: 0;
+    page-break-after: auto;
+    page-break-before: auto;
+    page-break-inside: auto;
+    -webkit-perspective: none;
+    perspective: none;
+    -webkit-perspective-origin: 50% 50%;
+    perspective-origin: 50% 50%;
+    pointer-events: auto;
+    position: static;
+    quotes: none;
+    resize: none;
+    right: auto;
+    ruby-align: auto;
+    ruby-overhang: none;
+    ruby-position: before;
+    ruby-span: none;
+    size: auto;
+    table-layout: auto;
+    top: auto;
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+    -webkit-transform-origin: 50% 50% 0;
+    -ms-transform-origin: 50% 50% 0;
+    transform-origin: 50% 50% 0;
+    -webkit-transform-style: flat;
+    transform-style: flat;
+    transition: all 0 ease 0;
+    unicode-bidi: normal;
+    vertical-align: baseline;
+    white-space: normal;
+    widows: 2;
+    word-break: normal;
+    word-spacing: normal;
+    word-wrap: normal;
+    z-index: auto;
+    text-align: start;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+}
+
+.intercom-composer-popover {
+    z-index: 100;
+    position: absolute;
+    bottom: 0px;
+    right: -260px;
+    box-shadow: 0 1px 15px 1px rgba(0, 0, 0, .08);
+    background-color: #fff;
+    border-radius: 6px;
+    transition-duration: 100ms;
+    transition-delay: 0ms;
+    transform-style: flat;
+    transform-origin: 50% 50% 0;
+    opacity: 0;
+    transition: all 0.2s linear;
+    visibility: hidden;
+}
+
+.intercom-composer-popover.active {
+    visibility: visible;
+    opacity: 1;
+    bottom: 50px;
+}
+
+.intercom-emoji-picker {
+    width: 350px;
+    height: 400px;
+}
+
+.intercom-composer-popover-header {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    right: 20px;
+    height: 40px;
+    border-bottom: 1px solid #edeff1;
+}
+
+.intercom-composer-popover-input {
+    background-image: url(https://js.intercomcdn.com/images/search.7ae40c25.png);
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    background-position: 0 12px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #6e7a89;
+    padding-left: 25px;
+    height: 40px;
+    width: 100%;
+    box-sizing: border-box;
+    background-image: url(https://js.intercomcdn.com/images/search@2x.9f02b9f3.png);
+    border: none;
+    outline: none;
+}
+
+.intercom-composer-popover-body {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    right: 0;
+    bottom: 5px;
+    padding: 0 20px;
+    overflow-y: scroll;
+}
+
+.intercom-emoji-picker-group {
+    margin: 0 -5px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #ccc;
+}
+
+.intercom-emoji-picker-group-title {
+    color: #9e9e9e;
+    font-weight: 400;
+    font-size: 20px;
+    margin: 5px;
+}
+
+.intercom-emoji-picker-group-small-title {
+    color: #9e9e9e;
+    font-weight: 400;
+    font-size: 15px;
+    margin: 5px;
+}
+
+.emoji {
+    padding: 5px;
+    width: 30px;
+    line-height: 30px;
+    display: inline-table;
+    text-align: center;
+    cursor: pointer;
+    vertical-align: middle;
+    font-size: 28px;
+    transition: -webkit-transform 60ms ease-out;
+    transition: transform 60ms ease-out;
+    transition: transform 60ms ease-out, -webkit-transform 60ms ease-out;
+    transition-delay: 60ms;
+    font-family: Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, Segoe UI Symbol, Android Emoji, EmojiSymbols;
+}
+
+.emoji:hover {
+    transition-delay: 0ms;
+    -webkit-transform: scale(1.4);
+    -ms-transform: scale(1.4);
+    transform: scale(1.4);
+}
+
+.intercom-composer-popover-caret {
+    position: absolute;
+    bottom: -8px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #fff;
+    left: 20px;
+}
+
+/* ========================= ScrollBar ====================== */
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-track:hover {
+    background: #9994;
+    border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #999;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* ========================= Responsive ====================== */
+@media only screen and (max-width: 600px) {
+    .intercom-composer-popover {
+        right: 0;
+    }
+
+    .intercom-composer-popover-caret {
+        left: 280px;
+    }
+}
+
+@media only screen and (max-width: 360px) {
+
+    .chat-container,
+    .intercom-emoji-picker {
+        width: calc(100vw - 10px);
+    }
+
+    .intercom-composer-popover-caret {
+        left: calc(100vw - 85px);
+    }
+}
