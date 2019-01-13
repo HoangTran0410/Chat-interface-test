@@ -7,10 +7,12 @@
     <title>Websocket learning</title>
 
     <!-- libraries -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-<!--     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script> -->
 
     <!-- Our files -->
     <link rel="stylesheet" href="style.css">
@@ -25,38 +27,38 @@
     </button>
     <div class="chat-container">
         <div class="chat-header rounded">
-            <div class="btn-group">
-                <button type="button" class="btn btn-primary active" id="btn-chat-world" title="Tin nhắn bên ngoài">
+            <div class="btn-group" id="btns-choose-conv">
+                <button type="button" class="btn btn-primary rounded-0 active" data-conv="conv-world" title="Tin nhắn bên ngoài">
                     Thế giới
-                    <span class="badge badge-danger">4</span>
+                    <span class="badge badge-danger" data-conv="conv-world">4</span>
                 </button>
-                <button type="button" class="btn btn-primary" id="btn-chat-room" title="Tin nhắn trong phòng">
+                <button type="button" class="btn btn-primary rounded-0" data-conv="conv-room" title="Tin nhắn trong phòng">
                     Phòng
-                    <span class="badge badge-danger">2</span>
+                    <span class="badge badge-danger" data-conv="conv-room">2</span>
                 </button>
             </div>
-            <button type="button" class="btn btn-danger float-right" title="Ẩn khung tin nhắn" id="btn-close-chat">
+            <button type="button" class="btn btn-danger rounded-0 float-right" title="Ẩn khung tin nhắn" id="btn-close-chat">
                 <i class="fas fa-times"></i>
             </button>
         </div>
-        <div class="conversation">
-            <div id="conversation-world" class="active"></div>
-            <div id="conversation-room"></div>
+        <div class="conversation-container">
+            <div class="conversation active" id="conv-world"></div>
+            <div class="conversation" id="conv-room"></div>
         </div>
         <div class="chat-footer rounded-bottom">
             <div class="input-group">
                 <input class="form-control" placeholder="Nhập để gửi tin nhắn..." id="input-message">
                 <div class="input-group-append">
-                    <button class="btn btn-light border" type="button" title="Cảm xúc Emoji" id="btn-emoji-picker">😃</button>
-                    <button class="btn btn-success" type="submit" title="Gửi" id="btn-send-message">
+                    <button class="btn btn-light border rounded-0" type="button" title="Cảm xúc Emoji" id="btn-emoji-picker">😃</button>
+                    <button class="btn btn-success rounded-0" type="submit" title="Gửi" id="btn-send-message">
                         <i class="fa fa-paper-plane"></i>
                     </button>
                 </div>
             </div>
             <div class="composer-popover composer-emoji-popover" id="emoji-picker">
-                <div class="emoji-picker">
+                <div class="emoji-picker-container">
                     <div class="composer-popover-header">
-                        <input class="composer-popover-input" placeholder="Tìm kiếm.." value="">
+                        <input class="emoji-input-search" placeholder="Tìm kiếm..." value="">
                     </div>
                     <div class="composer-popover-body-container noselect">
                         <div class="composer-popover-body">

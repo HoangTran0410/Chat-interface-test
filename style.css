@@ -1,5 +1,13 @@
 * {
+    margin: 0;
+    padding: 0;
     font-family: "proxima-nova", "Source Sans Pro", sans-serif;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
 }
 
 #btn-open-chat {
@@ -35,12 +43,12 @@
     background-color: #ccc;
 }
 
-.chat-container .conversation {
+.chat-container .conversation-container {
     position: relative;
     height: 350px;
 }
 
-.chat-container .conversation div {
+.chat-container .conversation {
     position: absolute;
     top: 0;
     left: 0;
@@ -48,14 +56,13 @@
     width: 100%;
     overflow: auto;
     overflow-wrap: break-word;
-}
 
-.chat-container .conversation div {
     background-color: #eee;
     visibility: hidden;
+    padding: 5px;
 }
 
-.chat-container .conversation div.active {
+.chat-container .conversation.active {
     visibility: visible;
 }
 
@@ -78,9 +85,95 @@
     /* Non-prefixed version, currently supported by Chrome and Opera */
 }
 
+/* Message */
+.message-container-left,
+.message-container-right {
+    margin-bottom: 10px;
+}
+
+.message-body {
+    background-color: #ddd;
+}
+
+.clearFloat {
+    clear: both;
+}
+
+/* left message */
+.message-container-left .message-avatar {
+    display: block;
+    float: left;
+    width: 44px;
+    height: 44px;
+    background: url(img/question.svg);
+    background-size:100% 100%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.message-container-left .message-avatar img {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    width: 100%;
+    height: 100%;
+}
+
+.message-container-left .message-body {
+    padding-left: 10px;
+    width: calc(100% - 44px);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border: 1px solid #d1d5da;
+    float: left;
+}
+
+/* right message */
+.message-container-right .message-avatar {
+    display: block;
+    float: right;
+    width: 44px;
+    height: 44px;
+    background-image: url(img/question.svg);
+    background-size:100% 100%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.message-container-right .message-avatar img {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 100%;
+    height: 100%;
+}
+
+.message-container-right .message-body {
+    padding-left: 10px;
+    width: calc(100% - 44px);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: 1px solid #d1d5da;
+    float: right;
+}
+
 /* ================ EMOJI ================ */
-.composer-popover-input {
+.emoji-input-search {
+    background-image: url(https://js.intercomcdn.com/images/search.7ae40c25.png);
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    background-position: 0 12px;
     background-color: transparent;
+    font-weight: 400;
+    font-size: 14px;
+    color: #6e7a89;
+    padding-left: 25px;
+    height: 40px;
+    width: 100%;
+    box-sizing: border-box;
+    /* background-image: url(https://js.intercomcdn.com/images/search@2x.9f02b9f3.png); */
+    border: none;
+    outline: none;
 }
 
 .composer-popover {
@@ -106,7 +199,7 @@
     bottom: 50px;
 }
 
-.emoji-picker {
+.emoji-picker-container {
     width: 350px;
     height: 400px;
 }
@@ -118,23 +211,6 @@
     right: 20px;
     height: 40px;
     border-bottom: 1px solid #edeff1;
-}
-
-.composer-popover-input {
-    background-image: url(https://js.intercomcdn.com/images/search.7ae40c25.png);
-    background-size: 16px 16px;
-    background-repeat: no-repeat;
-    background-position: 0 12px;
-    font-weight: 400;
-    font-size: 14px;
-    color: #6e7a89;
-    padding-left: 25px;
-    height: 40px;
-    width: 100%;
-    box-sizing: border-box;
-    background-image: url(https://js.intercomcdn.com/images/search@2x.9f02b9f3.png);
-    border: none;
-    outline: none;
 }
 
 .composer-popover-body {
@@ -169,6 +245,7 @@
     display: block;
     border-bottom: 2px solid #0000;
 }
+
 .emoji-picker-group-small-title:hover {
     color: #333;
     border-bottom: 2px solid #ddd9;
@@ -197,10 +274,6 @@
     transform: scale(1.4);
 }
 
-.emoji-container {
-    /*transition-duration: .2s;*/
-}
-
 .composer-popover-caret {
     position: absolute;
     bottom: -8px;
@@ -210,6 +283,58 @@
     border-right: 8px solid transparent;
     border-top: 8px solid #fff;
     left: 20px;
+}
+
+/* ========================= Tooltip ======================= */
+/* Tooltip container */
+.tooltipW3 {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip text */
+.tooltipW3 .tooltiptextW3 {
+    visibility: hidden;
+    width: 120px;
+    background-color: #000000da;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+    width: 120px;
+    top: calc(100% + 5px);
+    left: 50%;
+    margin-left: -20px;
+    /* Use half of the width (120/2 = 60), to center the tooltip */
+}
+
+.tooltipW3.left .tooltiptextW3 {
+    margin-left: -100px;
+}
+ 
+.tooltipW3 .tooltiptextW3::after {
+    content: " ";
+    position: absolute;
+    bottom: 100%;
+    /* At the top of the tooltip */
+    left: 15px;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+}
+
+.tooltipW3.left .tooltiptextW3::after {
+    left: calc(100% - 15px);
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltipW3:hover .tooltiptextW3 {
+    visibility: visible;
 }
 
 /* ========================= ScrollBar ====================== */
@@ -222,6 +347,7 @@
 ::-webkit-scrollbar-track {
     background: transparent;
 }
+
 ::-webkit-scrollbar-track:hover {
     background: #9994;
     border-radius: 5px;

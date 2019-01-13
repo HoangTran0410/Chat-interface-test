@@ -90,25 +90,7 @@ function setupEmoji() {
         document.getElementsByClassName('composer-emoji-popover')[0].classList.toggle("active");
     })
 
-
-    document.addEventListener('click', function(e) {
-        var emojiPicker = document.getElementById('emoji-picker');
-        if (!emojiPicker.contains(e.target)) {
-            emojiPicker.classList.remove("active");
-        }
-
-        if (e.target.classList.contains('emoji')) {
-            document.getElementById('input-message').value += e.target.innerHTML;
-            saveFrequentlyToLocal(e.target.title, e.target.innerHTML);
-        }
-
-        if(e.target.classList == 'emoji-picker-group-small-title') {
-            addEmoji(e.target);
-            // console.log(e.target)
-        }
-    })
-
-    document.getElementsByClassName('composer-popover-input')[0].addEventListener('keyup', function() {
+    document.getElementsByClassName('emoji-input-search')[0].addEventListener('keyup', function() {
         var emojies = document.getElementsByClassName('emoji');
         console.log('checking')
 
