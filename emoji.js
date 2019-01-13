@@ -1,5 +1,5 @@
 function getEmoji() {
-    // https://unicode.org/emoji/charts/full-emoji-list.innerHTML
+    // https://unicode.org/emoji/charts/full-emoji-list.html
     var trs = document.getElementsByTagName('table')[0].getElementsByTagName('tr');
     var result = {};
     var bigname, smallname;
@@ -33,18 +33,36 @@ function getEmoji() {
 
 function showEmoji() {
     for (var bighead in emojiJSON) {
-        document.write('<div class="intercom-emoji-picker-group">');
-        document.write('<div class="intercom-emoji-picker-group-title">' + bighead + '</div>');
+        document.write('<div class="emoji-picker-group">');
+        document.write('<div class="emoji-picker-group-title">' + bighead + '</div>');
 
         for (var smallhead in emojiJSON[bighead]) {
-            document.write('<p class="intercom-emoji-picker-group-small-title"> '+smallhead+'</p>');
-            for (var emoji in emojiJSON[bighead][smallhead]) {
-                document.write(`<span class="emoji" title="` + emojiJSON[bighead][smallhead][emoji] + `">` + emoji + `</span>`);
-            }
+            document.write(`<p class="emoji-picker-group-small-title">` + smallhead + `</p>
+                            <div class="emoji-container"></div>`);
         }
 
         document.write('</div>')
     }
+}
+
+function addEmoji(p) {
+    window.event.stopPropagation();
+
+    var div = p.nextElementSibling;
+    var bighead = p.parentElement.firstChild.innerHTML.trim().replace('&amp;', '&');
+    var smallhead = p.innerHTML.trim().replace('&amp;', '&');
+
+    var s = '';
+    if(div.innerHTML == s) {
+        for (var emoji in emojiJSON[bighead][smallhead]) {
+            s += (`<span class="emoji" title="` + emojiJSON[bighead][smallhead][emoji] + `">` + emoji + `</span>`);
+        }
+
+        div.innerHTML = s;
+    } else {
+        div.innerHTML = s;
+    }
+
 }
 
 function updateFrequentlyFromLocal() {
@@ -53,7 +71,7 @@ function updateFrequentlyFromLocal() {
     var frequently = window.localStorage.getItem('emoji-frequently');
 
     if (frequently) {
-        s += ('<div class="intercom-emoji-picker-group-title">Frequently used</div>');
+        s += ('<div class="emoji-picker-group-title">Frequently used</div>');
 
         var emojis_fre = JSON.parse(frequently);
         for (var e of emojis_fre) {
@@ -67,12 +85,13 @@ function updateFrequentlyFromLocal() {
 function setupEmoji() {
     updateFrequentlyFromLocal();
 
-    document.getElementById("btn-emoji-picker").addEventListener('click', function (e) {
+    document.getElementById("btn-emoji-picker").addEventListener('click', function(e) {
         e.stopPropagation();
-        document.getElementsByClassName('intercom-composer-emoji-popover')[0].classList.toggle("active");
+        document.getElementsByClassName('composer-emoji-popover')[0].classList.toggle("active");
     })
 
-    document.addEventListener('click', function (e) {
+
+    document.addEventListener('click', function(e) {
         var emojiPicker = document.getElementById('emoji-picker');
         if (!emojiPicker.contains(e.target)) {
             emojiPicker.classList.remove("active");
@@ -82,9 +101,14 @@ function setupEmoji() {
             document.getElementById('input-message').value += e.target.innerHTML;
             saveFrequentlyToLocal(e.target.title, e.target.innerHTML);
         }
+
+        if(e.target.classList == 'emoji-picker-group-small-title') {
+            addEmoji(e.target);
+            // console.log(e.target)
+        }
     })
 
-    document.getElementsByClassName('intercom-composer-popover-input')[0].addEventListener('keyup', function () {
+    document.getElementsByClassName('composer-popover-input')[0].addEventListener('keyup', function() {
         var emojies = document.getElementsByClassName('emoji');
         console.log('checking')
 
